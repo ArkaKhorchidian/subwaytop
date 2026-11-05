@@ -1,0 +1,42 @@
+[build-system]
+requires = ["hatchling>=1.24"]
+build-backend = "hatchling.build"
+
+[project]
+name = "subwaytop"
+version = "0.1.0"
+description = "Every NYC subway train, live, in your terminal: a real-time map, station departure boards and service alerts from the MTA's open feeds"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Arka Khorchidian" }]
+requires-python = ">=3.10"
+dependencies = ["textual>=0.80"]
+keywords = ["nyc", "subway", "mta", "gtfs", "gtfs-realtime", "transit", "terminal", "tui", "map", "new-york"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Environment :: Console",
+  "Intended Audience :: End Users/Desktop",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Topic :: Utilities",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=7", "gtfs-realtime-bindings>=1.0"]
+
+[project.scripts]
+subwaytop = "subwaytop.cli:run"
+
+[project.urls]
+Homepage = "https://github.com/ArkaKhorchidian/subwaytop"
+Issues = "https://github.com/ArkaKhorchidian/subwaytop/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/subwaytop"]
+
+[tool.hatch.build.targets.sdist]
+exclude = ["docs", ".github"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
